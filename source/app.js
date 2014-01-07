@@ -55,7 +55,7 @@
                 + '<div>Connecting: <div style="float:right">' + connectionTime + '</div></div>'
                 //+ '<div>Initial network latency: <div style="float:right">' + l + '</div></div>'
                 + '<div>Waiting Response: <div style="float:right">' + serverTime + '</div></div>'
-                + '<div>Receiving Response: <div style="float:right">' + responseTime + ' ' + ( (window.performance.timing.domainLookupEnd === window.performance.timing.connectEnd) ? '(cached)': '' ) + '</div></div>' 
+                + '<div>Receiving Response: <div style="float:right">' + responseTime + '</div></div>' //  ' ' + ( (window.performance.timing.domainLookupEnd === window.performance.timing.connectEnd) ? '(cached)': '' ) +
                 + '<div style="margin: 7px 0;width:100%;height:1px;border-bottom:1px solid #000;"></div>'
                 + '<div>HTML finishes to download at: <div style="float:right">' + c + '</div></div>' 
                 + '<div>DOMContentLoaded event: <div style="float:right">' + a + '</div></div>' 
