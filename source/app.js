@@ -61,6 +61,7 @@
                 + '<div>DOMContentLoaded event: <div style="float:right">' + a + '</div></div>' 
                 + '<div>Page load event: <div style="float:right">' + b + '</div></div>' 
                 + '<div>Connection type: <div style="float:right">' + connectionSpeed + '</div></div>'
+                + '<div id="closeMobilePerf" onclick="document.body.removeChild( document.getElementById(\'asos_mobileperf\') );">Close</div>' 
                 + '</div>';
 
             // Save timestamp, page URL, referrer, page size and number of resources 

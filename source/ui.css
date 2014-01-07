@@ -18,7 +18,7 @@
 	font-size: 13px !important; 
 	text-align: left;
 } 
-#asos_mobileperf #saveDataToMdb { 
+#asos_mobileperf #saveDataToMdb, #asos_mobileperf #closeMobilePerf { 
 	display: inline-block; 
 	margin: .5em 0; 
 	padding: 0 .5em; 

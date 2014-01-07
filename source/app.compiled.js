@@ -10,7 +10,7 @@
         //div.style.cssText = "";
         
         var style = document.createElement('style');
-        style.innerText = '#asos_mobileperf *{font-family:Helvetica,Arial,sans-serif;color:#000!important;box-sizing:border-box}#asos_mobileperf{position:absolute;top:0;left:0;z-index:99999;padding:0;margin:0;width:100%;max-width:480px;min-height:100px;border-bottom:3px solid #444;background:#eee;font-size:13px!important;text-align:left}#asos_mobileperf #saveDataToMdb{display:inline-block;margin:.5em 0;padding:0 .5em;height:2em;border:1px solid #333;background-color:#43dbbd;line-height:2em}#asosTimelineBar{position:relative;width:100%;height:10px}#asosTimelineBar>div{position:absolute;height:10px}'; 
+        style.innerText = '#asos_mobileperf *{font-family:Helvetica,Arial,sans-serif;color:#000!important;box-sizing:border-box}#asos_mobileperf{position:absolute;top:0;left:0;z-index:99999;padding:0;margin:0;width:100%;max-width:480px;min-height:100px;border-bottom:3px solid #444;background:#eee;font-size:13px!important;text-align:left}#asos_mobileperf #saveDataToMdb,#asos_mobileperf #closeMobilePerf{display:inline-block;margin:.5em 0;padding:0 .5em;height:2em;border:1px solid #333;background-color:#43dbbd;line-height:2em}#asosTimelineBar{position:relative;width:100%;height:10px}#asosTimelineBar>div{position:absolute;height:10px}'; 
         
         if ( "undefined" === typeof(performance) ) 
             sHtml = 'ERROR: Navigation timing API was not found.';
@@ -61,6 +61,7 @@
                 + '<div>DOMContentLoaded event: <div style="float:right">' + a + '</div></div>' 
                 + '<div>Page load event: <div style="float:right">' + b + '</div></div>' 
                 + '<div>Connection type: <div style="float:right">' + connectionSpeed + '</div></div>'
+                + '<div id="closeMobilePerf" onclick="document.body.removeChild( document.getElementById(\'asos_mobileperf\') );">Close</div>' 
                 + '</div>';
 
             // Save timestamp, page URL, referrer, page size and number of resources 
