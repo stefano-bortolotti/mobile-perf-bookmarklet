@@ -1,0 +1,21 @@
+{
+  "name": "mobile-performance-bookmarklet",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stefano-bortolotti/mobile-perf-bookmarklet.git"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-remove-logging": "~0.1.1",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-static-inline": "~0.1.2",
+    "grunt-cssc": "~0.2.6",
+    "grunt-contrib-cssmin": "~0.6.2"
+  },
+  "description": "Mobile Performance Bookmarklet",
+  "main": "Gruntfile.js",
+  "author": "Stefano Bortolotti <stefano.bortolotti.tn@gmail.com> (www.stefanobortolotti.com)",
+  "license": "MIT"
+}
