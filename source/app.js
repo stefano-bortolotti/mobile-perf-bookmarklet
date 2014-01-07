@@ -48,7 +48,7 @@
             } catch (e) {}
 
             var max = Math.max.apply( Math, [l, c, b, a] ); 
-            var timeline = '<div id="asosTimelineBar"><div style="z-index:5;background:#0E3;width:' + ( ( ( DNSlookupTime + connectionTime ) * 100 ) / max ).toFixed(0) + '%;"></div><div style="z-index:4;background:#99B4EC;width:' + ( ( serverTime * 100 ) / max ).toFixed(0) + '%;"></div><div style="z-index:3;background:#407AC7;width:' + ( ( c * 100 ) / max ).toFixed(0) + '%;"></div><div style="z-index:2;background:#F19B73;width:' + ( ( a * 100 ) / max ).toFixed(0) + '%;"></div><div style="z-index:1;background:#D62121;width:100%;"></div></div>';
+            var timeline = '<div id="asosTimelineBar"><div style="z-index:5;background:#0E3;width:' + ( ( ( DNSlookupTime + connectionTime ) * 100 ) / max ).toFixed(0) + '%;"></div><div style="z-index:4;background:#99B4EC;width:' + ( ( ( DNSlookupTime + connectionTime + serverTime) * 100 ) / max ).toFixed(0) + '%;"></div><div style="z-index:3;background:#407AC7;width:' + ( ( c * 100 ) / max ).toFixed(0) + '%;"></div><div style="z-index:2;background:#F19B73;width:' + ( ( a * 100 ) / max ).toFixed(0) + '%;"></div><div style="z-index:1;background:#D62121;width:100%;"></div></div>';
             sHtml = timeline 
                 + '<div id="asos_timing_report" style="padding:8px;max-width:250px">'
                 + '<div>DNS lookup: <div style="float:right">' + DNSlookupTime + '</div></div>'
