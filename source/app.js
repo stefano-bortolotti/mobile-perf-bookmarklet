@@ -1,4 +1,4 @@
-(function() {
+(function(mongolabUrl) {
     var id = "asos_mobileperf";
     var div = document.getElementById(id);
     if ( div ) {
@@ -51,7 +51,35 @@
 
         div.innerHTML = sHtml;
         div.appendChild(style); 
-        var abc = '@@{saveData}@';
+        console.log('as', window.mongolabUrl);
+        if ( window.mongolabUrl.length ) {
+            
+            var xhr = new XMLHttpRequest(); // https://api.mongolab.com/api/1/databases/perf/collections/test-insert?apiKey=
+            xhr.open('POST', window.mongolabUrl, true);
+            xhr.setRequestHeader('Content-type', 'application/json');
+            xhr.onreadystatechange = function() {
+                if ( xhr.readyState == 4 ) {
+                    if ( xhr.status == 200 ) {
+                        console.log('res', xhr);
+                    } 
+                    else {
+                        console.log('Error');
+                    }
+                }
+            };
+            var data = [ DNSlookupTime, connectionTime, serverTime, responseTime, domLoadingTime, pageLoadTime, window.location.href, document.referrer]; 
+                
+            var saveBtn = document.createElement('div');
+            saveBtn.innerHTML = 'Save';
+            saveBtn.addEventListener('click', function() {
+                console.log('save');
+                var d = JSON.parse( '{ "' + window.performance.timing.navigationStart.toString() + '" : ' + JSON.stringify(data) + ' }' ); // {  + '' : data } ); 
+                xhr.send( JSON.stringify( d ) );
+            }, false);
+
+            if ( data )
+                div.appendChild(saveBtn); 
+        }
         document.body.appendChild(div);
     }
 })();

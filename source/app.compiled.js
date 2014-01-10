@@ -1,4 +1,4 @@
-(function() {
+(function(mongolabUrl) {
     var id = "asos_mobileperf";
     var div = document.getElementById(id);
     if ( div ) {
@@ -30,23 +30,6 @@
             var domLoadingTime = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.domContentLoadedEventStart; // time to load the DOM
             var pageLoadTime = window.performance.timing.loadEventEnd - window.performance.timing.loadEventStart; // time to trigger the load event from the domContentLoaded event
 
-            try {
-                var connection = navigator.connection || {'type':'0'}, // create a custom object if navigator.connection isn't available 
-                    connectionSpeed;
-                
-                // determine connection speed 
-                switch(connection.type) { 
-                    case connection.CELL_3G: // 3G 
-                        connectionSpeed = 'CELL_3G'; 
-                    break; 
-                    case connection.CELL_2G: // 2G 
-                        connectionSpeed = 'CELL_2G'; 
-                    break; 
-                    default: // WIFI, ETHERNET, UNKNOWN 
-                        connectionSpeed = 'fast'; 
-                }; 
-            } catch (e) {}
-
             var max = Math.max.apply( Math, [l, c, b, a] ); 
             var timeline = '<div id="asosTimelineBar"><div style="z-index:5;background:#0E3;width:' + ( ( ( DNSlookupTime + connectionTime ) * 100 ) / max ).toFixed(0) + '%;"></div><div style="z-index:4;background:#99B4EC;width:' + ( ( ( DNSlookupTime + connectionTime + serverTime) * 100 ) / max ).toFixed(0) + '%;"></div><div style="z-index:3;background:#407AC7;width:' + ( ( c * 100 ) / max ).toFixed(0) + '%;"></div><div style="z-index:2;background:#F19B73;width:' + ( ( a * 100 ) / max ).toFixed(0) + '%;"></div><div style="z-index:1;background:#D62121;width:100%;"></div></div>';
             sHtml = timeline 
@@ -60,7 +43,6 @@
                 + '<div>HTML finishes to download at: <div style="float:right">' + c + '</div></div>' 
                 + '<div>DOMContentLoaded event: <div style="float:right">' + a + '</div></div>' 
                 + '<div>Page load event: <div style="float:right">' + b + '</div></div>' 
-                + '<div>Connection type: <div style="float:right">' + connectionSpeed + '</div></div>'
                 + '<div id="closeMobilePerf" onclick="document.body.removeChild( document.getElementById(\'asos_mobileperf\') );">Close</div>' 
                 + '</div>';
 
@@ -69,7 +51,35 @@
 
         div.innerHTML = sHtml;
         div.appendChild(style); 
-        var abc = '@@{saveData}@';
+        
+        if ( window.mongolabUrl.length ) {
+            
+            var xhr = new XMLHttpRequest(); // https://api.mongolab.com/api/1/databases/perf/collections/test-insert?apiKey=
+            xhr.open('POST', window.mongolabUrl, true);
+            xhr.setRequestHeader('Content-type', 'application/json');
+            xhr.onreadystatechange = function() {
+                if ( xhr.readyState == 4 ) {
+                    if ( xhr.status == 200 ) {
+                        
+                    } 
+                    else {
+                        
+                    }
+                }
+            };
+            var data = [ DNSlookupTime, connectionTime, serverTime, responseTime, domLoadingTime, pageLoadTime, window.location.href, document.referrer]; 
+                
+            var saveBtn = document.createElement('div');
+            saveBtn.innerHTML = 'Save';
+            saveBtn.addEventListener('click', function() {
+                
+                var d = JSON.parse( '{ "' + window.performance.timing.navigationStart.toString() + '" : ' + JSON.stringify(data) + ' }' ); // {  + '' : data } ); 
+                xhr.send( JSON.stringify( d ) );
+            }, false);
+
+            if ( data )
+                div.appendChild(saveBtn); 
+        }
         document.body.appendChild(div);
     }
 })();
