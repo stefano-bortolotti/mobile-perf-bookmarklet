@@ -11,11 +11,12 @@
         
         var style = document.createElement('style');
         style.innerText = '@@{style}@'; 
+
+        var sHtml = '';
         
         if ( "undefined" === typeof(performance) ) 
             sHtml = 'ERROR: Navigation timing API was not found.';
-
-        var sHtml = '';
+        
         try {
             var a = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart; // dom loaded
             var b = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart; // load event fired

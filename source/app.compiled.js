@@ -11,11 +11,12 @@
         
         var style = document.createElement('style');
         style.innerText = '#asos_mobileperf *{font-family:Helvetica,Arial,sans-serif;color:#000!important;box-sizing:border-box}#asos_mobileperf{position:absolute;top:0;left:0;z-index:99999;padding:0;margin:0;width:100%;max-width:480px;min-height:100px;border-bottom:3px solid #444;background:#eee;font-size:13px!important;text-align:left}#asos_mobileperf #saveDataToMdb,#asos_mobileperf #closeMobilePerf{display:inline-block;margin:.5em 0;padding:0 .5em;height:2em;border:1px solid #333;background-color:#43dbbd;line-height:2em}#asosTimelineBar{position:relative;width:100%;height:10px}#asosTimelineBar>div{position:absolute;height:10px}'; 
+
+        var sHtml = '';
         
         if ( "undefined" === typeof(performance) ) 
             sHtml = 'ERROR: Navigation timing API was not found.';
-
-        var sHtml = '';
+        
         try {
             var a = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart; // dom loaded
             var b = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart; // load event fired
